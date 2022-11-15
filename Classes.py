@@ -1,22 +1,29 @@
 class Tablo:
     def __init__(self, word : str) -> None:
-        self._word = word
-        self._unick_letters = list(set(word))
+        self._word = word.upper()
         self._letter = ""
-
-    def __str__(self):
-        return f'{self._word} have unick letters {self._unick_letters}, the letter is {self._letter}'
-
-    def unick_let_setter(self, let:str):
-        #self._unick_letters = list(set(let))
+        self._hidden = "*" * len(self._word)
         let_dict = dict()
         word_copy = list(self._word)[:]
-        for i in range(0, len(self._word) + 1):
+        for i in range(0, len(self._word)):
             print(i, word_copy[i])
             let_dict[word_copy[i]] = let_dict.get(word_copy[i], list())
             let_dict[word_copy[i]].append(i)
+        print(let_dict)
 
-            print(let_dict)
+    def __str__(self):
+        return f'{self._word} The hidden word is: {self._hidden}, the letter is {self._letter}'
+
+    # def letters_and_indexs(self):
+    #
+    #     let_dict = dict()
+    #     word_copy = list(self._word)[:]
+    #     for i in range(0, len(self._word)):
+    #         print(i, word_copy[i])
+    #         let_dict[word_copy[i]] = let_dict.get(word_copy[i], list())
+    #         let_dict[word_copy[i]].append(i)
+    #
+    #         print(let_dict)
 
     @property
     def word(self) -> str:
@@ -37,9 +44,10 @@ class Tablo:
         else:
             raise TypeError('The letter should be typed in letters and lenght should be 1 ch ')
 
-Tablo = Tablo('hello')
-print(Tablo)
+T = Tablo('hello')
+print(T)
+T2 = Tablo('Carshearing')
+print(T2)
 # Tablo.letter = "h"
 # Tablo.word = "red"
-Tablo.unick_let_setter("reddick")
-print(Tablo)
+# Tablo.letters_and_indexs()
