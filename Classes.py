@@ -11,11 +11,11 @@ class Tablo:
         #self._unick_letters = list(set(let))
         let_dict = dict()
         word_copy = list(self._word)[:]
-        for ch in self._word[::-1]:
-            print(ch, word_copy)
-            let_dict[ch] = let_dict.get(ch, list())
-            let_dict[ch].append(word_copy.index(ch))
-            word_copy.pop()
+        for i in range(0, len(self._word) + 1):
+            print(i, word_copy[i])
+            let_dict[word_copy[i]] = let_dict.get(word_copy[i], list())
+            let_dict[word_copy[i]].append(i)
+
             print(let_dict)
 
     @property
