@@ -6,14 +6,14 @@ class Tablo:
         let_dict = dict()
         word_copy = list(self._word)[:]
         for i in range(0, len(self._word)):
-            print(i, word_copy[i])
+            #print(i, word_copy[i])
             let_dict[word_copy[i]] = let_dict.get(word_copy[i], list())
             let_dict[word_copy[i]].append(i)
-        print(let_dict)
+        #print(let_dict)
         self._let_dict = let_dict
 
     def __str__(self):
-        return f'{self._word} The hidden word is: {self._hidden}, the letter is {self._letter}'
+        return f'The hidden word is: {self._hidden}'
 
     def open_the_new_letters(self):
         if self._letter in self._word:
@@ -41,22 +41,22 @@ class Tablo:
             self._letter = l.upper()
         else:
             raise TypeError('The letter should be typed in letters and lenght should be 1 ch ')
-
-T = Tablo('hello')
-print(T)
-T2 = Tablo('hello')
-print(T2)
-T2.letter = "e"
-print(T2)
-T2.open_the_new_letters()
-print(T2)
-T2.letter = "l"
-print(T2)
-T2.open_the_new_letters()
-print(T2)
-T2.letter = "h"
-print(T2)
-T2.open_the_new_letters()
-print(T2)
-# Tablo.word = "red"
-# Tablo.letters_and_indexs()
+#
+# T = Tablo('hello')
+# print(T)
+# T2 = Tablo('hello')
+# print(T2)
+# T2.letter = "e"
+# print(T2)
+# T2.open_the_new_letters()
+# print(T2)
+# T2.letter = "l"
+# print(T2)
+# T2.open_the_new_letters()
+# print(T2)
+# T2.letter = "h"
+# print(T2)
+# T2.open_the_new_letters()
+# print(T2)
+# # Tablo.word = "red"
+# # Tablo.letters_and_indexs()
