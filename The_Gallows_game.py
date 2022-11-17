@@ -1,4 +1,6 @@
 import Classes
+import json
+import random
 
 """This is the main program of the game"""
 def choise_check():
@@ -38,8 +40,20 @@ numbering_dict = {
     5:"fifth",
     6:"sixth and final"
 }
+# Open JSON file and upload in to dictionary data
+with open("russian_nouns_with_definition.json", 'r', encoding="utf-8") as file:
+    data = json.load(file)
 
-word = Classes.Tablo("Паравоз")
+words_list = list()
+for i_word in data.keys():
+    if (isinstance(i_word, str)) and (5 < len(i_word) <= 7) and (i_word.isalpha()):
+        words_list.append(i_word)
+
+#print(data[words_list[0]]['definition'])
+
+hidden_word = random.choice(words_list)
+
+word = Classes.Tablo(hidden_word)
 print(f'Welcome to our game named "The Gallows game" \n'
       f'Your task is guess the hidden word. \n'
       f'Please note, you have only 6 trys,\n'
@@ -58,17 +72,23 @@ for step in range(1, 7):
         continue
     elif ch == "1":
         if word_check(word._word):
-            print(f"Congratulation!!! you are perfectly right! the hidden word was {word._word}")
+            print(f"Congratulation!!! you are perfectly right! the hidden word was {word._word}\n"
+                  f"Definition:{data[hidden_word]['definition']}")
             break
         else:
             print(f"Thank you for game! Have a nice day.")
             break
 if "*" in word._hidden:
+    print(f"I will give you final hint:\n"
+          f"Definition:{data[hidden_word]['definition']}")
     if word_check(word._word):
-        print(f"Congratulation!!! you are perfectly right! the hidden word was {word._word}")
+        print(f"Congratulation!!! you are perfectly right! the hidden word was {word._word}\n"
+              f"Definition:{data[hidden_word]['definition']}")
     else:
-        print(f"Unfortunately you loose all you try's and final version was wrong :-( "
+        print(f"Unfortunately you loose all you try's and final version was wrong :-( \n"
+              f"The hidden word was {hidden_word}\n"
               f"Your life is over.")
+
 
 print("Game over.")
 
